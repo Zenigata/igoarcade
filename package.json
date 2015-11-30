@@ -1,28 +1,30 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
+  "name": "igoarcade",
+  "version": "0.0.1",
+  "description": "A game of go arcade edition",
+  "main": "igoarcade/main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atom/electron-quick-start.git"
+    "url": "git+https://github.com/Zenigata/igoarcade.git"
   },
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial"
+    "igo",
+    "go",
+    "arcade",
+    "game"
   ],
-  "author": "GitHub",
+  "author": "Zenigata",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/atom/electron-quick-start/issues"
+    "url": "https://github.com/Zenigata/igoarcade/issues"
   },
-  "homepage": "https://github.com/atom/electron-quick-start#readme",
+  "homepage": "https://github.com/Zenigata/igoarcade#readme",
   "devDependencies": {
-    "electron-prebuilt": "^0.34.0"
+    "electron-prebuilt": "^0.34.0",
+    "wgo": "3.0.0-alpha.1",
+    "pachi": "0.0.1"
   }
 }
