@@ -8,6 +8,7 @@ var pachi = require('pachi');
 var boardSize = 9;
 var board, game, gtp;
 var alreadyPassed = false;
+var markers;
 
 var startNewGame = function(boardSize) {
   var elem = document.getElementById('board');
@@ -27,7 +28,6 @@ var startNewGame = function(boardSize) {
 };
 
 
-
 var disableGoban = function() {
   board.removeEventListener('click', playerPlay);
   disablePassButton();
@@ -44,19 +44,38 @@ var playerPlay = function(x, y) {
     return;
   }
   disableGoban();
+  removeMarkers();
 
-  // coup du joueur
+  var add = [];
+
   board.addObject({
     x: x,
     y: y,
     c: game.turn
   });
-  game.play(x, y);
+  add.push({
+    x: x,
+    y: y,
+    type: 'CR'
+  });
+  markers = add;
+  board.addObject(add);
+
+  var res = game.play(x, y);
+  if (res.length > 0) {
+    board.update({remove: res});
+  }
 
   // coup de l'ordinateur
   var coord = numberToLetterCoordinates(x, y);
   gtp.send('play b ' + coord.x  + coord.y, function(error, response) {});
   computerPlay();
+};
+
+var removeMarkers = function() {
+  if (markers) {
+    board.removeObject(markers);
+  }
 };
 
 var computerPlay = function() {
@@ -76,12 +95,29 @@ var computerPlay = function() {
       }
       else {
         var move = letterToNumberCoordinates(response.charAt(0), response.charAt(1));
+
+        removeMarkers();
+
+        // coup du joueur
+        var add = [];
+
         board.addObject({
           x: move.x,
           y: move.y,
           c: game.turn
         });
-        game.play(move.x, move.y);
+        add.push({
+          x: move.x,
+          y: move.y,
+          type: 'CR'
+        });
+        markers = add;
+        board.addObject(add);
+
+        var res = game.play(move.x, move.y);
+        if (res.length > 0) {
+          board.update({remove: res});
+        }
 
         enableGoban();
       }
