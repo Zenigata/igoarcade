@@ -65,6 +65,7 @@ var playerPlay = function(x, y) {
   if (res.length > 0) {
     board.update({remove: res});
   }
+  updateCaptures();
 
   // coup de l'ordinateur
   var coord = numberToLetterCoordinates(x, y);
@@ -118,6 +119,7 @@ var computerPlay = function() {
         if (res.length > 0) {
           board.update({remove: res});
         }
+        updateCaptures();
 
         enableGoban();
       }
@@ -150,7 +152,19 @@ var gameEnd = function() {
 
 var getScore = function() {
   gtp.send('final_score', function(error, response) {
-    displayMessage(response);
+    if (response === '0') {
+      displayMessage('Égalité parfaite !');
+    } else {
+      var res = response.split('+');
+      var points = res[1].substring(0, res[1].indexOf('.0'));
+      var message = (res[0] == 'W' ? 'Blanc' : 'Noir');
+      message += ' gagne de ' + points + ' point';
+      if (points !== '1' && points !== '1.5') {
+        message += 's';
+      }
+      message += ' !';
+      displayMessage(message);
+    }
   });
 };
 
@@ -169,6 +183,13 @@ var newGame = function() {
 var moveAllowed = function(x, y) {
   //console.log('x:' + x + ' y:' + y + ' ' + game.isValid(x, y));
   return game.isValid(x, y);
+};
+
+var updateCaptures = function() {
+  var caps = document.getElementById('captures-noir');
+  caps.innerHTML = game.getPosition().capCount.black;
+  var caps = document.getElementById('captures-blanc');
+  caps.innerHTML = game.getPosition().capCount.white;
 };
 
 
