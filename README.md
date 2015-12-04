@@ -1,30 +1,25 @@
-# electron-quick-start
+# i go arcade!
 
-**Clone and run for a quick way to see an Electron in action.**
+:zap: *An arcade edition of the game of go* :zap:  
+game of go, baduk, weiqi, igo, jeu de go  
+[game of go](https://en.wikipedia.org/wiki/Go_(game))
 
-This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start) within the Electron documentation.
+Insert a coin, push the start button and try to beat the game!
 
-A basic Electron application needs just these files:
+## Features
 
-- `index.html` - A web page to render.
-- `main.js` - Starts the app and creates a browser window to render HTML.
-- `package.json` - Points to the app's main file and lists its details and dependencies.
+- `combo` - unleash your combos!
+- `scoreboard` - try to improve your highscore.
+- `difficulty` - adjust the level of the game.
+- `boss` - random boss will destroy you!
+- `bonus stage` - clear the bonus stages for more and more points.
 
-You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start).
+## Downloads
 
-## To Use
+Version 0.1
 
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-$ git clone https://github.com/atom/electron-quick-start
-# Go into the repository
-$ cd electron-quick-start
-# Install dependencies and run the app
-$ npm install && npm start
-```
-
-Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
+Windows:
+Mac:
+Linux:
 
 #### License [MIT](LICENSE.md)
